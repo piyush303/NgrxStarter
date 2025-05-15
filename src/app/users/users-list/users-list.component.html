@@ -3,30 +3,46 @@
 @if(users$ | async; as users) {
     users-   {{users.length}}
 
-    <table class="user-table">
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Name</td>
-                <td>User Name</td>
-                <td>Email</td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            @for(user of users; track user.id) {
+    @if(id$ | async;  as id) {
+        id - {{id}}
+    }
+
+    <form [formGroup]="userForm">
+        <table class="user-table">
+            <thead>
                 <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                        <button type="button" (click)="onEdit(user)">Edit</button>
-                    </td>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>User Name</td>
+                    <td>Email</td>
+                    <td></td>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @for(user of users; track user.id) {
+                    @if (user.id !== selectedUserId()) {
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <button type="button" (click)="onEdit(user)">Edit</button>
+                            </td>
+                        </tr>
+                    } @else {
+                        <tr>
+                            
+                                <td>{{ user.id }}</td>
+                                <td><input type="text" [value]="user.name"/></td>
+                                <td><input type="text" /></td>
+                                <td><input type="text" /></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </form>
 }
 
 

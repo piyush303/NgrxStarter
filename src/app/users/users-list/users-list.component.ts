@@ -10,11 +10,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrl: './users-list.component.css'
 })
 export class UsersListComponent implements OnInit{
-  protected isEditing = signal(false)
+  protected selectedUserId = signal<number | null>(null)
 
   private store = inject(Store);
 
   protected users$ = this.store.select(UsersSelectors.selectAllUsers);
+  protected id$ = this.store.select(UsersSelectors.selectCurrentUserId);
 
   protected userForm = new FormGroup({
     id: new FormControl(),
@@ -28,6 +29,10 @@ export class UsersListComponent implements OnInit{
   }
 
   onEdit(user: User) {
-    console.log('onEdit', user)
+    console.log('onEdit', user);
+    this.selectedUserId.set(user.id);
+
+
+    this.store.dispatch(UsersActions.updateUser({update: {id: user.id, changes: {...user}}}))
   }
 }
