@@ -6,13 +6,16 @@ import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
 import {HomeModule} from "./home/home.module";
 import { UsersModule } from './users/users.module';
+import { HttpClientModule } from '@angular/common/http';
+import { UsersEffects, UsersReducer } from './store/users';
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    StoreModule.forRoot([]),
-    EffectsModule.forRoot([]),
+    HttpClientModule,
+    StoreModule.forRoot({users: UsersReducer.reducer}),
+    EffectsModule.forRoot([UsersEffects]),
     HomeModule,
     UsersModule
   ],
