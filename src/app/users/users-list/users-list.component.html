@@ -1,1 +1,5 @@
 <p>users-list works!</p>
+
+@if(users$ | async; as users) {
+    users-   {{users.length}}
+}

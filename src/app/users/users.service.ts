@@ -7,7 +7,7 @@ import { User } from "../store/users/users.model";
     providedIn: 'root'
 })
 export class UsersService {
-    private API_URL = ''
+    private API_URL = 'https://jsonplaceholder.typicode.com/users'
     private http = inject(HttpClient);
 
     getUsers(): Observable<User[]> {
