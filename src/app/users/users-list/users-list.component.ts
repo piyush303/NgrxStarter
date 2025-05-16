@@ -35,4 +35,8 @@ export class UsersListComponent implements OnInit{
 
     this.store.dispatch(UsersActions.updateUser({update: {id: user.id, changes: {...user}}}))
   }
+
+  onSave() {
+    console.log(this.userForm.value)
+  }
 }
