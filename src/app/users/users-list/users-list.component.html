@@ -34,9 +34,9 @@
                         <tr>
                             
                                 <td>{{ user.id }}</td>
-                                <td><input type="text" [value]="user.name" formControlName="name"/></td>
-                                <td><input type="text" [value]="user.username" formControlName="username"/></td>
-                                <td><input type="text" [value]="user.email" formControlName="email" /></td>
+                                <td><input type="text" formControlName="name"/></td>
+                                <td><input type="text" formControlName="username"/></td>
+                                <td><input type="text" formControlName="email" /></td>
                                 <td><button type="button" (click)="onSave()">Save</button></td>
                         </tr>
                     }

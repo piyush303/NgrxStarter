@@ -32,6 +32,7 @@ export class UsersListComponent implements OnInit{
     console.log('onEdit', user);
     this.selectedUserId.set(user.id);
 
+    this.userForm.setValue({id: user.id, name: user.name, username: user.username, email: user.email})
 
     this.store.dispatch(UsersActions.updateUser({update: {id: user.id, changes: {...user}}}))
   }
