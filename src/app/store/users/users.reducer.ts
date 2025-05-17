@@ -5,7 +5,7 @@ import * as UsersActions from './users.actions';
 
 export interface UsersState extends EntityState<User>{
     users: User[];
-    selectedUserId: number | null
+    selectedUser: User | undefined
 }
 
 export function selectUserId(a: User): number {
@@ -19,7 +19,7 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
 
 export const INITIAL_STATE: UsersState = adapter.getInitialState({
   users: [],
-  selectedUserId: null
+  selectedUser: undefined
 });
 
 export const reducer = createReducer(
@@ -27,12 +27,9 @@ export const reducer = createReducer(
     on(UsersActions.loadUsersSuccess, (state, action) => ( 
       adapter.addMany(action.users, { ...state, selectedUserId: null })
     )),
-    on(UsersActions.updateUser, (state, { update }) => {
-      console.log('updateUser', update)
-      const x = adapter.updateOne(update, state);
 
-      console.log(adapter, state)
-
-      return x
+    on(UsersActions.updateUserSuccess, (state, { update }) => {
+      return adapter.updateOne(update, state)
     }),
+
   );

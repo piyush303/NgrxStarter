@@ -8,7 +8,7 @@ const selectUsersState = createFeatureSelector<UsersReducer.UsersState>(
     usersFeatureKey
 );
 
-const getSelectedUserId = (state: UsersState) => state.selectedUserId;
+const getSelectedUserId = (state: UsersState) => state.selectedUser?.id;
 
 const {
     selectIds,
@@ -27,13 +27,7 @@ export const selectAllUsers = createSelector(
     selectAll
 );
 
-export const selectCurrentUserId = createSelector(
+export const selectSelectedUser = createSelector(
     selectUsersState,
-    getSelectedUserId
-);
-
-export const selectCurrentUser = createSelector(
-    selectUserEntities,
-    selectCurrentUserId,
-    (userEntities, userId) => userId && userEntities[userId]
-);
+    (state: UsersState) => state.selectedUser
+)

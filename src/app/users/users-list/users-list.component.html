@@ -3,10 +3,6 @@
 @if(users$ | async; as users) {
     users-   {{users.length}}
 
-    @if(id$ | async;  as id) {
-        id - {{id}}
-    }
-
     <form [formGroup]="userForm">
         <table class="user-table">
             <thead>

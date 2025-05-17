@@ -15,13 +15,13 @@ export class UsersListComponent implements OnInit{
   private store = inject(Store);
 
   protected users$ = this.store.select(UsersSelectors.selectAllUsers);
-  protected id$ = this.store.select(UsersSelectors.selectCurrentUserId);
+  // protected id$ = this.store.select(UsersSelectors.selectCurrentUserId);
 
   protected userForm = new FormGroup({
-    id: new FormControl(),
-    name: new FormControl(''),
-    username: new FormControl(''),
-    email: new FormControl('')
+    id: new FormControl<number>(0),
+    name: new FormControl<string>(''),
+    username: new FormControl<string>(''),
+    email: new FormControl<string>('')
   })
 
   ngOnInit(): void {
@@ -33,11 +33,14 @@ export class UsersListComponent implements OnInit{
     this.selectedUserId.set(user.id);
 
     this.userForm.setValue({id: user.id, name: user.name, username: user.username, email: user.email})
-
-    this.store.dispatch(UsersActions.updateUser({update: {id: user.id, changes: {...user}}}))
   }
 
   onSave() {
-    console.log(this.userForm.value)
+
+    const user = this.userForm.value as User;
+
+    this.selectedUserId.set(null);
+
+    this.store.dispatch(UsersActions.updateUser({ updatedUser: user }))
   }
 }

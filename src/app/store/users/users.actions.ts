@@ -13,5 +13,10 @@ export const loadUsersSuccess = createAction(
 
 export const updateUser = createAction(
   '[Users] Update User', 
+  props<{ updatedUser: User }>()
+);
+
+export const updateUserSuccess = createAction(
+  '[Users] Update User Success', 
   props<{ update: Update<User> }>()
 );
