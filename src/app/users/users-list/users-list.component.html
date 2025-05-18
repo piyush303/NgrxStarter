@@ -1,8 +1,6 @@
-<p>users-list works!</p>
+<h2>Users List</h2>
 
 @if(users$ | async; as users) {
-    users-   {{users.length}}
-
     <form [formGroup]="userForm">
         <table class="user-table">
             <thead>
