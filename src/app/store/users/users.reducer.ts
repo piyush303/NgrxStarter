@@ -4,7 +4,6 @@ import { User } from "./users.model";
 import * as UsersActions from './users.actions';
 
 export interface UsersState extends EntityState<User>{
-    users: User[];
     selectedUser: User | undefined
 }
 
@@ -18,7 +17,6 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
 });
 
 export const INITIAL_STATE: UsersState = adapter.getInitialState({
-  users: [],
   selectedUser: undefined
 });
 

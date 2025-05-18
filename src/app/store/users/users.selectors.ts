@@ -8,8 +8,6 @@ const selectUsersState = createFeatureSelector<UsersReducer.UsersState>(
     usersFeatureKey
 );
 
-const getSelectedUserId = (state: UsersState) => state.selectedUser?.id;
-
 const {
     selectIds,
     selectEntities,

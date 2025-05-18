@@ -15,7 +15,6 @@ export class UsersListComponent implements OnInit{
   private store = inject(Store);
 
   protected users$ = this.store.select(UsersSelectors.selectAllUsers);
-  // protected id$ = this.store.select(UsersSelectors.selectCurrentUserId);
 
   protected userForm = new FormGroup({
     id: new FormControl<number>(0),
@@ -29,18 +28,23 @@ export class UsersListComponent implements OnInit{
   }
 
   onEdit(user: User) {
-    console.log('onEdit', user);
     this.selectedUserId.set(user.id);
 
-    this.userForm.setValue({id: user.id, name: user.name, username: user.username, email: user.email})
+    this.userForm.setValue({
+      id: user.id, 
+      name: user.name, 
+      username: user.username, 
+      email: user.email
+    })
   }
 
   onSave() {
-
     const user = this.userForm.value as User;
 
     this.selectedUserId.set(null);
 
-    this.store.dispatch(UsersActions.updateUser({ updatedUser: user }))
+    this.store.dispatch(
+      UsersActions.updateUser({ updatedUser: user })
+    )
   }
 }

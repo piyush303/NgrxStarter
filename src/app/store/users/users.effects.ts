@@ -3,15 +3,12 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as UsersActions from './users.actions'
 import { EMPTY, catchError, exhaustMap, map, of, switchMap, withLatestFrom } from "rxjs";
 import { UsersService } from "../../users/users.service";
-import { Store, select } from "@ngrx/store";
-import { selectSelectedUser } from "./users.selectors";
 import { User } from "./users.model";
 
 @Injectable()
 export class UsersEffects {
     private action$ = inject(Actions);
     private usersService = inject(UsersService);
-    private store = inject(Store);
 
     loadUsers$ = createEffect(() => {
         return this.action$.pipe(

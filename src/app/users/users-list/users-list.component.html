@@ -6,7 +6,7 @@
     <form [formGroup]="userForm">
         <table class="user-table">
             <thead>
-                <tr>
+                <tr class="table-head-row">
                     <td>Id</td>
                     <td>Name</td>
                     <td>User Name</td>
@@ -17,7 +17,7 @@
             <tbody>
                 @for(user of users; track user.id) {
                     @if (user.id !== selectedUserId()) {
-                        <tr>
+                        <tr class="table-body-row">
                             <td>{{ user.id }}</td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.username }}</td>
@@ -27,13 +27,12 @@
                             </td>
                         </tr>
                     } @else {
-                        <tr>
-                            
-                                <td>{{ user.id }}</td>
-                                <td><input type="text" formControlName="name"/></td>
-                                <td><input type="text" formControlName="username"/></td>
-                                <td><input type="text" formControlName="email" /></td>
-                                <td><button type="button" (click)="onSave()">Save</button></td>
+                        <tr class="table-body-row">
+                            <td>{{ user.id }}</td>
+                            <td><input type="text" formControlName="name"/></td>
+                            <td><input type="text" formControlName="username"/></td>
+                            <td><input type="text" formControlName="email" /></td>
+                            <td><button type="button" (click)="onSave()">Save</button></td>
                         </tr>
                     }
                 }
